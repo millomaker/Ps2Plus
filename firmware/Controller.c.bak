@@ -96,18 +96,7 @@ static char Map(int x, int inMin, int inMax, int outMin, int outMax) {
 }
 
 void lutInit() {
-	
-	//I set my own custom joystick range value here because it didn't work with de configurator
-    //It is for Switch joystick
-    eepromWrite(LX_MIN_EEPROM, 60);//50 +10 (+20)
-    eepromWrite(LX_MAX_EEPROM, 186);//198 -30
-    eepromWrite(LY_MIN_EEPROM, 58);//50 +10   g mi 48 peut être augementer lui +10 ok
-    eepromWrite(LY_MAX_EEPROM, 179);//194   g mi 194 on tente -15 (179) nope ok
 
-    eepromWrite(RX_MIN_EEPROM, 70);//55 +10
-    eepromWrite(RX_MAX_EEPROM, 186);//198 -20
-    eepromWrite(RY_MIN_EEPROM, 56);//51 +10
-    eepromWrite(RY_MAX_EEPROM, 188);//198 -10
     char lxMin = eepromRead(LX_MIN_EEPROM);
     char lxMax = eepromRead(LX_MAX_EEPROM);
     char lyMin = eepromRead(LY_MIN_EEPROM);
@@ -184,13 +173,12 @@ char reversebyte(char byte) {
 }
 
 void readControllerAnalog() {
-	
-	//added ~ to invert the value, that cause the inversion of the stick direction
-    lxData = ~reversebyte(lutLX[readADC(ANC0)]);
-    lyData = ~reversebyte(lutLY[readADC(ANC1)]);
 
-    rxData = ~reversebyte(lutRX[readADC(ANC6)]);
-    ryData = ~reversebyte(lutRY[readADC(ANC7)]);
+    lxData = reversebyte(lutLX[readADC(ANC0)]);
+    lyData = reversebyte(lutLY[readADC(ANC1)]);
+
+    rxData = reversebyte(lutRX[readADC(ANC6)]);
+    ryData = reversebyte(lutRY[readADC(ANC7)]);
 
 
 }
