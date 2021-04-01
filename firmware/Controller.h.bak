@@ -25,8 +25,8 @@
 #define R2BUTTON RB5
 #define R3BUTTON RD0
 
-#define START RB7  //modified because I have inverted on my PCB
-#define SELECT RB6
+#define START RB6
+#define SELECT RB7
 
 #define LEFT_ANALOG_X RC0
 #define LEFT_ANALOG_Y RC1

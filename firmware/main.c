@@ -5,6 +5,9 @@
  * Created on June 25, 2019, 10:49 PM
  */
 
+//Benge notes :
+//All command are inversed ! Why ??? SPi signal ???
+
 
 #include <xc.h>
 #include "Opcodes.h"
@@ -354,7 +357,7 @@ void __interrupt() PS2Command() {
             if (analogMode)
                 response[0] = ANALOG_MODE;
             else
-                response[0] = DIGITAL_MODE;
+                response[0] = DIGITAL_MODE; 
 
         }
 
@@ -397,13 +400,13 @@ void main(void) {
     
     while (1) {
 
-        
+        //I set this function unactive because it doesn't work for me
         //L1 L2 Select
-        if(digitalStateFirst == 0x7F && digitalStateSecond == 0x5F){ 
+        /*if(digitalStateFirst == 0x7F && digitalStateSecond == 0x5F){ 
             
             configureController();
 
-        }
+        }*/
         
         
         slaveSelect = SLAVE_SELECT;
